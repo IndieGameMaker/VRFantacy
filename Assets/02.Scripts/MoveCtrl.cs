@@ -21,12 +21,13 @@ public class MoveCtrl : MonoBehaviour
 
     //MainCamera의 Transform 추출해서 저장할 변수
     private Transform camTr;
+    private CharacterController cc;
 
     // Start is called before the first frame update
     void Start()
     {
         camTr = Camera.main.GetComponent<Transform>();
-        //camTr = Camera.main.transform;
+        cc    = GetComponent<CharacterController>();
 
         //WayPointGroup 게임오브젝트를 검색
         GameObject wayPointGroup = GameObject.Find("WayPointGroup");
@@ -45,9 +46,17 @@ public class MoveCtrl : MonoBehaviour
             case MoveType.WAY_POINT:
                 MoveWayPoint();
                 break;
+
             case MoveType.LOOK_AT:
+                MoveLookAt();
                 break;
         }
+    }
+
+    //바라보는 시선 방향으로 이동처리
+    void MoveLookAt()
+    {
+        cc.SimpleMove(camTr.forward * speed);
     }
 
     void MoveWayPoint()
