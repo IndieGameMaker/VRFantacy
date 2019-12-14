@@ -17,7 +17,13 @@ public class MoveCtrl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        //WayPointGroup 게임오브젝트를 검색
+        GameObject wayPointGroup = GameObject.Find("WayPointGroup");
+        if (wayPointGroup != null)
+        {
+            //WayPointGroup 하위에 있는 모든 Point의 Transform컴포넌트를 추출
+            points = wayPointGroup.GetComponentsInChildren<Transform>();
+        }
     }
 
     // Update is called once per frame
