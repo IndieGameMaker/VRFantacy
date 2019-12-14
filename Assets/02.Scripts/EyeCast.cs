@@ -6,6 +6,7 @@ public class EyeCast : MonoBehaviour
 {
     private Ray ray;
     private RaycastHit hit;
+    private Transform tr;
 
     [Range(5.0f, 20.0f)]
     public float range = 10.0f;
@@ -13,12 +14,17 @@ public class EyeCast : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        tr = transform;  //tr = GetComponent<Transform>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        //Ray(광선의 발사 원점, 광선의 방향)
+        ray = new Ray(tr.position, tr.forward);
+
+        #if UNITY_EDITOR
+        Debug.DrawRay(ray.origin, ray.direction * range , Color.green);
+        #endif
     }
 }
