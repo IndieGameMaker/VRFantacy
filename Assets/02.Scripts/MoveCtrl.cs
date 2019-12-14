@@ -44,8 +44,14 @@ public class MoveCtrl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Android Back 버튼 클릭했을 때 앱종료
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+
         if (isStopped == true) return;
-        
+
         switch (moveType)
         {
             case MoveType.WAY_POINT:
