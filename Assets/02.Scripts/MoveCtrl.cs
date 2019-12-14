@@ -50,5 +50,9 @@ public class MoveCtrl : MonoBehaviour
         Vector3 dir = points[nextIdx].position - transform.position;
         //2. 산출한 벡터의 각도(쿼터니언 타입)를 산출
         Quaternion rot = Quaternion.LookRotation(dir);
+        //3. 회전
+        transform.rotation = Quaternion.Slerp(transform.rotation , rot , Time.deltaTime * damping);
+        //4. 전진로직
+        transform.Translate(Vector3.forward * Time.deltaTime * speed);
     }
 }
