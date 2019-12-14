@@ -64,7 +64,11 @@ public class MoveCtrl : MonoBehaviour
             nextIdx = (++nextIdx >= points.Length) ? 1 : nextIdx;
 
             /*
-            
+            nextIdx = nextIdx + 1;
+            if (nextIdx >= points.Length)
+            {
+                nextIdx = 1;
+            }
             */
         }
     }
