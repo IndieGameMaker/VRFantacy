@@ -46,6 +46,9 @@ public class MoveCtrl : MonoBehaviour
 
     void MoveWayPoint()
     {
-
+        //1. 이동할 방향으로의 벡터를 계산
+        Vector3 dir = points[nextIdx].position - transform.position;
+        //2. 산출한 벡터의 각도(쿼터니언 타입)를 산출
+        Quaternion rot = Quaternion.LookRotation(dir);
     }
 }
