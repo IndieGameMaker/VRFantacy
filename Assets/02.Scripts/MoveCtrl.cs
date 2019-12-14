@@ -13,6 +13,11 @@ public class MoveCtrl : MonoBehaviour
     public MoveType moveType = MoveType.WAY_POINT;
     //웨이 포인트의 Transform 저장할 배열
     public Transform[] points;
+    //이동해야할 다음 웨이포인트의 인덱스값
+    public int nextIdx = 1;
+
+    public float speed = 2.0f;
+    public float damping = 3.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +34,18 @@ public class MoveCtrl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        switch (moveType)
+        {
+            case MoveType.WAY_POINT:
+                MoveWayPoint();
+                break;
+            case MoveType.LOOK_AT:
+                break;
+        }
+    }
+
+    void MoveWayPoint()
+    {
+
     }
 }
