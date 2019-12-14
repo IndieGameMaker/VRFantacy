@@ -55,4 +55,17 @@ public class MoveCtrl : MonoBehaviour
         //4. 전진로직
         transform.Translate(Vector3.forward * Time.deltaTime * speed);
     }
+
+    void OnTriggerEnter(Collider coll)
+    {
+        if (coll.CompareTag("WAY_POINT"))
+        {
+            //삼항연산자
+            nextIdx = (++nextIdx >= points.Length) ? 1 : nextIdx;
+
+            /*
+            
+            */
+        }
+    }
 }
