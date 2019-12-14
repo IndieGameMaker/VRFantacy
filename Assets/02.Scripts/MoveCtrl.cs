@@ -19,9 +19,15 @@ public class MoveCtrl : MonoBehaviour
     public float speed = 2.0f;
     public float damping = 3.0f;
 
+    //MainCamera의 Transform 추출해서 저장할 변수
+    private Transform camTr;
+
     // Start is called before the first frame update
     void Start()
     {
+        camTr = Camera.main.GetComponent<Transform>();
+        //camTr = Camera.main.transform;
+
         //WayPointGroup 게임오브젝트를 검색
         GameObject wayPointGroup = GameObject.Find("WayPointGroup");
         if (wayPointGroup != null)
