@@ -6,6 +6,7 @@ public class ItemLook : MonoBehaviour
 {
     public void OnLookItem(bool isLooked)
     {
-        Debug.Log(isLooked);
+        //Debug.Log(isLooked);
+        MoveCtrl.isStopped = isLooked;
     }
 }

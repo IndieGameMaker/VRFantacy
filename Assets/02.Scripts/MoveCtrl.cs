@@ -23,6 +23,9 @@ public class MoveCtrl : MonoBehaviour
     private Transform camTr;
     private CharacterController cc;
 
+    //정지여부를 결정하는 변수
+    public static bool isStopped = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +44,8 @@ public class MoveCtrl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isStopped == true) return;
+        
         switch (moveType)
         {
             case MoveType.WAY_POINT:
