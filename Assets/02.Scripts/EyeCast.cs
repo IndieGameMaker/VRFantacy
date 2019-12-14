@@ -26,5 +26,16 @@ public class EyeCast : MonoBehaviour
         #if UNITY_EDITOR
         Debug.DrawRay(ray.origin, ray.direction * range , Color.green);
         #endif
+
+        //Physics.Raycast(광선, out 결괏값, 거리, 검출할 레이어)
+        if (Physics.Raycast(ray, out hit, range, 1<<8 | 1<<9))
+        {
+            MoveCtrl.isStopped = true;
+        }
+        else
+        {
+            MoveCtrl.isStopped = false;
+        }        
+
     }
 }
