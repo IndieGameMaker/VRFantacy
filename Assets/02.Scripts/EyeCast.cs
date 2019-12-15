@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class EyeCast : MonoBehaviour
@@ -18,6 +19,15 @@ public class EyeCast : MonoBehaviour
     //응시한 버튼을 저장하기 위한 변수
     private GameObject currButton = null;
     private GameObject prevButton = null;
+
+    //현재 응시하고 있는 FillAmount 이미지 저장
+    private Image circleBar;
+
+    //응시할 시간
+    public float selectedTime = 1.0f;
+    //응시한 후부터 지난 시간
+    private float passedTime = 0.0f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -63,6 +73,7 @@ public class EyeCast : MonoBehaviour
         if (hit.collider.gameObject.layer == 8)
         {
             currButton = hit.collider.gameObject; //현재 응시하고 있는 버튼
+            circleBar = currButton.GetComponentsInChildren<Image>()[1];
 
             if (currButton != prevButton)
             {
@@ -77,6 +88,11 @@ public class EyeCast : MonoBehaviour
                                      , ExecuteEvents.pointerExitHandler);
                 
                 prevButton = currButton;
+            }
+            else //같은 버튼을 계속 응시하는 경우
+            {
+                passedTime += Time.deltaTime;
+                circleBar.fillAmount = passedTime / selectedTime;
             }
         }
         else
