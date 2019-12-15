@@ -78,13 +78,22 @@ public class EyeCast : MonoBehaviour
                 
                 prevButton = currButton;
             }
-
+        }
+        else
+        {
+            ReleaseButton();
         }
     }
 
     void ReleaseButton()
     {
+        PointerEventData data = new PointerEventData(EventSystem.current);
 
+        if (prevButton != null)
+        {
+            ExecuteEvents.Execute(prevButton, data, ExecuteEvents.pointerExitHandler);
+            prevButton = null;
+        }
     }
 
 }
