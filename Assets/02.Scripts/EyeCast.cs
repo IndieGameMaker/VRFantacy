@@ -18,6 +18,7 @@ public class EyeCast : MonoBehaviour
     void Start()
     {
         tr = transform;  //tr = GetComponent<Transform>();
+        anim = transform.Find("Canvas/CrossHair").GetComponent<Animator>();
     }
 
     // Update is called once per frame
