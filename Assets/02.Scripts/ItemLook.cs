@@ -23,6 +23,8 @@ public class ItemLook : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnBoxOpen(bool isOpened)
     {
+
+        GetComponent<Animator>().SetBool("IsOpen", isOpened);
         Debug.Log(isOpened);
     }
 }
