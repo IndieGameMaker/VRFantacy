@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class EyeCast : MonoBehaviour
 {
@@ -12,7 +13,11 @@ public class EyeCast : MonoBehaviour
     public float range = 10.0f;
 
     private int hashIsLook = Animator.StringToHash("IsLook");
-    public Animator anim; //CrooHair의 Animator 컴포넌트를 저장
+    private Animator anim; //CrooHair의 Animator 컴포넌트를 저장
+
+    //응시한 버튼을 저장하기 위한 변수
+    private GameObject currButton = null;
+    private GameObject prevButton = null;
 
     // Start is called before the first frame update
     void Start()
@@ -37,12 +42,49 @@ public class EyeCast : MonoBehaviour
             MoveCtrl.isStopped = true;
             //anim.SetBool("IsLook", true); //해시테이블 검색비용 발생
             anim.SetBool(hashIsLook, true);
+            //버튼을 응시했을 경우
+            LookButton();
         }
         else
         {
             MoveCtrl.isStopped = false;
             anim.SetBool(hashIsLook, false);
+            //
+            ReleaseButton();
         }        
 
     }
+
+    void LookButton()
+    {
+        PointerEventData data = new PointerEventData(EventSystem.current);
+
+        //8번 레이어
+        if (hit.collider.gameObject.layer == 8)
+        {
+            currButton = hit.collider.gameObject; //현재 응시하고 있는 버튼
+
+            if (currButton != prevButton)
+            {
+                //현재 응시하는 버튼에게 PointerEnter 이벤트를 전달
+                ExecuteEvents.Execute(currButton
+                                     , data
+                                     , ExecuteEvents.pointerEnterHandler);
+
+                //이전에 응시했던 버튼에게 PointerExit 이벤트를 전달
+                ExecuteEvents.Execute(prevButton
+                                     , data
+                                     , ExecuteEvents.pointerExitHandler);
+                
+                prevButton = currButton;
+            }
+
+        }
+    }
+
+    void ReleaseButton()
+    {
+
+    }
+
 }
