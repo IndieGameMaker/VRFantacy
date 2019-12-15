@@ -11,6 +11,9 @@ public class EyeCast : MonoBehaviour
     [Range(5.0f, 20.0f)]
     public float range = 10.0f;
 
+    private int hashIsLook = Animator.StringToHash("IsLook");
+    public Animator anim; //CrooHair의 Animator 컴포넌트를 저장
+
     // Start is called before the first frame update
     void Start()
     {
