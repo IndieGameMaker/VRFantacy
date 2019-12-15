@@ -35,10 +35,13 @@ public class EyeCast : MonoBehaviour
         if (Physics.Raycast(ray, out hit, range, 1<<8 | 1<<9))
         {
             MoveCtrl.isStopped = true;
+            //anim.SetBool("IsLook", true); //해시테이블 검색비용 발생
+            anim.SetBool(hashIsLook, true);
         }
         else
         {
             MoveCtrl.isStopped = false;
+            anim.SetBool(hashIsLook, false);
         }        
 
     }
