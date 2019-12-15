@@ -20,4 +20,9 @@ public class ItemLook : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
        MoveCtrl.isStopped = false;
     }
+
+    public void OnBoxOpen(bool isOpened)
+    {
+        Debug.Log(isOpened);
+    }
 }
