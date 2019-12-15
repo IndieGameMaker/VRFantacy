@@ -95,6 +95,10 @@ public class EyeCast : MonoBehaviour
             {
                 passedTime += Time.deltaTime;
                 circleBar.fillAmount = passedTime / selectedTime;
+                if (passedTime >= selectedTime)
+                {
+                    ExecuteEvents.Execute(currButton, data, ExecuteEvents.pointerClickHandler);
+                }
             }
         }
         else
